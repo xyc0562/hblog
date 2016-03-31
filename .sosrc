@@ -1,0 +1,7 @@
+- patterns:
+  - .*\.hs$
+  - ^hblog.cabal$
+  - ^stack.yaml$
+  commands:
+  - stack build
+  - stack exec hblog-exe
