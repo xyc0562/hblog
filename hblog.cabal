@@ -17,19 +17,19 @@ library
   hs-source-dirs:      src
   exposed-modules:     Views.Index
                      , Views.Templates.Layout
+                     , Models
   build-depends:       base >= 4.7 && < 5
                      , http-types
                      , resourcet
                      , text
                      , bytestring
                      , blaze-html
-                     , persistent
-                     , persistent-template
-                     , persistent-sqlite
-                     , persistent-postgresql
-                     , monad-logger
-                     , transformers
                      , time
+                     , transformers
+                     , persistent-template
+                     , persistent
+                     , persistent-postgresql
+                     , string-conversions
   default-language:    Haskell2010
 
 executable hblog-exe
@@ -43,6 +43,12 @@ executable hblog-exe
                      , warp
                      , wai-middleware-static
                      , wai-extra
+                     , monad-logger
+                     , transformers
+                     , persistent-template
+                     , persistent
+                     , persistent-postgresql
+                     , string-conversions
   default-language:    Haskell2010
 
 test-suite hblog-test
