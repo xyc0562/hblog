@@ -11,13 +11,10 @@ import qualified Database.Persist as P
 import qualified Database.Persist.Postgresql as PO
 import Database.Persist.TH
 import Models
-import Data.Int
 import Data.String.Conversions
+import qualified Control.Monad.State as S
 
 connStr = "host=localhost dbname=hblog user=webserver password=peekman2015 port=5432"
-
-toDocId :: Int64 -> DocumentId
-toDocId = PO.toSqlKey
 
 main :: IO ()
 main = runStderrLoggingT $ PO.withPostgresqlPool connStr 10 $ \pool -> liftIO $ do

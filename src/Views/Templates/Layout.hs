@@ -3,6 +3,7 @@ module Views.Templates.Layout where
 
 import Text.Blaze.Html5 as H
 import Text.Blaze.Html5.Attributes as A
+import Models
 
 renderLayout content = do
         H.docTypeHtml $ do

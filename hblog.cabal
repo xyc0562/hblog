@@ -30,6 +30,8 @@ library
                      , persistent
                      , persistent-postgresql
                      , string-conversions
+                     , mtl
+                     , containers
   default-language:    Haskell2010
 
 executable hblog-exe
@@ -49,6 +51,8 @@ executable hblog-exe
                      , persistent
                      , persistent-postgresql
                      , string-conversions
+                     , mtl
+                     , containers
   default-language:    Haskell2010
 
 test-suite hblog-test
