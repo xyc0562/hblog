@@ -5,6 +5,7 @@
 {-# LANGUAGE TemplateHaskell            #-}
 {-# LANGUAGE TypeFamilies               #-}
 {-# LANGUAGE MultiParamTypeClasses      #-}
+{-# LANGUAGE ExistentialQuantification   #-}
 
 module Models where
 import Data.Text
@@ -15,6 +16,9 @@ import Control.Monad.IO.Class (liftIO)
 import Data.Time.Clock (UTCTime)
 import Data.Int
 import Control.Monad.State
+import Control.Monad.Reader
+import Control.Monad.Logger
+import Control.Monad.Trans.Resource
 import qualified Data.Map.Strict as Map
 
 share [mkPersist sqlSettings] [persistLowerCase|
@@ -44,5 +48,9 @@ toConfigId = toSqlKey
 toUserId :: Int64 -> UserId
 toUserId = toSqlKey
 
-newtype AppState = AppState (Map.Map Text Text)
-newtype App a = App ((StateT AppState IO) a)
+data SKey = Conf
+
+data SVal = forall a. SVal a
+
+type AppState = Map.Map SKey SVal
+type App = (StateT AppState (ReaderT SqlBackend (NoLoggingT (ResourceT IO))) ())
